@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/pig_go.unity
+  isLoaded: 1
+  isActive: 1
