@@ -43,7 +43,10 @@ public class PigMove : MonoBehaviour {
     void Rotate()
     {
         if (!_isDead)
-         transform.rotation = Quaternion.RotateTowards(transform.rotation, Targets[_currTarget].transform.rotation, Time.deltaTime*RotationSpeed );
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Targets[_currTarget].transform.rotation, Time.deltaTime * RotationSpeed);
+            MoveForward(0.7f);
+        }
     }
     /// <summary>
     /// Движение вперед
@@ -51,6 +54,14 @@ public class PigMove : MonoBehaviour {
     void MoveForward()
     {
         transform.position = Vector3.MoveTowards(transform.position, Targets[_currTarget].transform.position, Time.deltaTime * MovingSpeed);
+    }
+    /// <summary>
+    /// Движение моба
+    /// </summary>
+    /// <param name="slow">на сколько замедляем</param>
+    void MoveForward(float slow)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, Targets[_currTarget].transform.position, Time.deltaTime * (MovingSpeed * slow));
     }
 
     /// <summary>
