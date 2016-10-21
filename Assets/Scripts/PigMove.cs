@@ -37,6 +37,11 @@ public class PigMove : MonoBehaviour {
         Targets = GameObject.FindObjectOfType<TriggerHelper>().Triggers;
 	}
 
+    public bool IsDead
+    {
+        get { return _isDead; }
+    }
+
     /// <summary>
     /// Поворот моба в сторону его цели
     /// </summary>

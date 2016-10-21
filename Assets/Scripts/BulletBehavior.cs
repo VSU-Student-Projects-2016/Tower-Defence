@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class BulletBehavior : MonoBehaviour {
@@ -6,21 +7,25 @@ public class BulletBehavior : MonoBehaviour {
     /// Скорость полета пули
     /// </summary>
     public float Speed = 50;
-
     /// <summary>
     /// Моб, в которого стреляем
     /// </summary>
+    bool trigger;
     PigMove _target;
-	// Use this for initialization
-	void Start () {
-        _target = FindObjectOfType<PigMove>();
+    // Use this for initialization
+    void Start () {
+
+
+        trigger = FindObjectOfType<TowerLifeLoop>().trigger;
+        _target = FindObjectOfType<TowerLifeLoop>()._target;
         Destroy(gameObject, 3.0f);
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
         //Если есть враг
-        if (_target != null)
+        if (trigger)
         {
             //пуляем во врага
             transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, Time.deltaTime * Speed);
@@ -28,9 +33,11 @@ public class BulletBehavior : MonoBehaviour {
             if (Vector3.Distance(transform.position, _target.transform.position) < 0.5f)
             {
                 _target.HP -= 100;
-                Destroy(gameObject);
+                Destroy(this.gameObject);
                 Debug.Log(_target.HP);
             }
         }
-	}
+        else
+            Destroy(this.gameObject);
+    }
 }

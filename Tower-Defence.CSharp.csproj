@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\PigMove.cs" />
     <Compile Include="Assets\Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\TriggerHelper.cs" />
+    <Compile Include="Assets\Scripts\tower\TowerLifeLoop.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+
 
 public class BulletSpawn : MonoBehaviour {
 
@@ -7,25 +9,27 @@ public class BulletSpawn : MonoBehaviour {
     /// Скорость стрельбы
     /// </summary>
     public float SpawnSpeed=3.0f;
+    
 
     /// <summary>
     /// Чем стреляем
     /// </summary>
-    public GameObject Bullet;
+    private GameObject Bullet;
 	// Use this for initialization
 	void Start ()
     {
         InvokeRepeating("RespawnBullet", 1.0f, Time.deltaTime*SpawnSpeed);
+        
     }
 
     // Update is called once per frame
     void Update ()
     {
 	}
-
+    
     //Готовим новый выстрел
     void RespawnBullet()
     {
-        Instantiate(Bullet, transform.position, Quaternion.identity);
+       // Bullet = Instantiate(Resources.Load("FireBall") as GameObject);  
     }
 }
