@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LevelStart : MonoBehaviour {
 
+    /// <summary>
+    /// На какой уровень переходим
+    /// </summary>
+    public int level;
 	// Use this for initialization
 	void Start () {
 	
@@ -12,4 +17,9 @@ public class LevelStart : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void ButtonClick()
+    {
+        SceneManager.LoadScene(level);
+    }
 }
