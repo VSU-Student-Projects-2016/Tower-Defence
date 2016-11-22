@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\BulletSpawn.cs" />
      <Compile Include="Assets\Scripts\EnemySpawnScript.cs" />
      <Compile Include="Assets\Scripts\FinishScript.cs" />
+     <Compile Include="Assets\Scripts\MenuScripts\LevelStart.cs" />
      <Compile Include="Assets\Scripts\PigMove.cs" />
      <Compile Include="Assets\Scripts\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\TriggerHelper.cs" />
