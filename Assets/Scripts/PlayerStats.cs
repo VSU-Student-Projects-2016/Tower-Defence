@@ -42,7 +42,7 @@ public class PlayerStats : MonoBehaviour {
         Time.timeScale = 0; //Останавливает время
     }
     /// <summary>
-    /// Свойство помогает изменит отображение жизней
+    /// Свойство помогает изменить отображение жизней
     /// </summary>
     public int ChangeLives
     {
@@ -57,7 +57,7 @@ public class PlayerStats : MonoBehaviour {
     }
 
     /// <summary>
-    /// Свойство помогает изменит отображение жизней
+    /// Свойство помогает изменить отображение золота
     /// </summary>
     public int ChangeGold
     {

@@ -20,6 +20,7 @@ public class FinishScript : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         Debug.Log(other);
+        Debug.Log(_player);
         if (other.GetComponent<PigMove>())
         {
             Destroy(other.gameObject, 2.0f);

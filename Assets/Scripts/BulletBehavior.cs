@@ -25,7 +25,7 @@ public class BulletBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Если есть враг
-        if (trigger)
+        if (trigger && _target!=null)
         {
             //пуляем во врага
             transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, Time.deltaTime * Speed);
