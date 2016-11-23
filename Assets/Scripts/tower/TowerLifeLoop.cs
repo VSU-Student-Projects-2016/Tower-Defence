@@ -5,8 +5,10 @@ using System;
 public class TowerLifeLoop : MonoBehaviour {
 
     #region Характеристики
-    //Скорострельность турели
-    public float SpeedLavel;
+    //Скорость поворота турели
+    public int RotationSpeed = 100;
+    //Скорость спавна пуль
+    public float SpeedLevel=50;
     #endregion
 
 
@@ -33,7 +35,7 @@ public class TowerLifeLoop : MonoBehaviour {
         //Получили дочерний элемент Боевой Турели
         body = transform.Find("Body");
 
-        InvokeRepeating("createBullet", 1.0f, Time.deltaTime * 50);
+        InvokeRepeating("createBullet", 1.0f, Time.deltaTime * SpeedLevel);
     }
 
     /// <summary>
@@ -42,7 +44,7 @@ public class TowerLifeLoop : MonoBehaviour {
     /// <param name="angle">угол</param>
     void towerRotation()
     {
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _target.transform.rotation, Time.deltaTime * 100);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, _target.transform.rotation, Time.deltaTime * RotationSpeed);
     }
 
     /// <summary>
@@ -62,7 +64,7 @@ public class TowerLifeLoop : MonoBehaviour {
         if (((x - xCenter) * (x - xCenter) + (z - zCenter)) < Radius * Radius)
             return true;
         //точка лежит на окружности
-        if (((x - xCenter) * (x - xCenter) + (z - zCenter)) == Radius * Radius)
+        if (((x - xCenter) * (x - xCenter) + (z - zCenter)) == Radius * Radius) ///ЗАЧЕМ ДВА СЛУЧАЯ ОБРАБАТЫВАЮТСЯ ПО ОДИНОЧКЕ, ЕСЛИ МОЖНО БЫЛО СДЕЛАТЬ МЕНЬШЕ ИЛИ РАВНО, ГЛЯНЬ ТУТ
             return true;
 
         return false;
@@ -75,7 +77,7 @@ public class TowerLifeLoop : MonoBehaviour {
     {
           var bullet = Instantiate(Resources.Load("FireBall") as GameObject);
           bullet.transform.position = body.Find("Gun").Find("barrel").transform.position;
-          bullet.GetComponent<BulletBehavior>().Speed = 30;
+          //bullet.GetComponent<BulletBehavior>().Speed = 50;
     }
 	
 	// Update is called once per frame
@@ -89,10 +91,6 @@ public class TowerLifeLoop : MonoBehaviour {
         }
         else
             trigger = false;
-
-
- 
-
 
     }
 }
