@@ -10,7 +10,7 @@ public class BulletBehavior : MonoBehaviour {
     /// <summary>
     /// Моб, в которого стреляем
     /// </summary>
-    bool trigger;
+    bool trigger; //НЕ ИСПОЛЬЗУЕТСЯ, МБ УДАЛИТЬ
 
     public int Damage=100;
 

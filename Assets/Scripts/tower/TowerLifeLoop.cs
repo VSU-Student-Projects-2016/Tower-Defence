@@ -76,7 +76,7 @@ public class TowerLifeLoop : MonoBehaviour {
     void createBullet()
     {
           var bullet = Instantiate(Resources.Load("FireBall") as GameObject);
-          bullet.transform.position = body.Find("Gun").Find("barrel").transform.position;
+          bullet.transform.position = body.Find("Gun").Find("barrel").transform.position; //ВОТ ТУТ НЕ ПОТЯНЕТ С НОВОЙ БАШНЕЙ
           //bullet.GetComponent<BulletBehavior>().Speed = 50;
     }
 	

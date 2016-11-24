@@ -27,8 +27,8 @@ public class EnemySpawnScript : MonoBehaviour {
     {
         if (_index < Enemies.Length)
         {
-            Vector3 pos = new Vector3(transform.position.x + Random.RandomRange(-_radius, _radius), transform.position.y, transform.position.z);
-            GameObject enemy = Instantiate(Enemies[_index], pos, Quaternion.identity) as GameObject;
+            Vector3 pos = new Vector3(transform.position.x + Random.Range(-_radius, _radius), transform.position.y, transform.position.z);
+            GameObject enemy = Instantiate(Enemies[_index], pos, Quaternion.identity) as GameObject; 
             enemy.transform.rotation = transform.rotation;
             ++_index;
         }

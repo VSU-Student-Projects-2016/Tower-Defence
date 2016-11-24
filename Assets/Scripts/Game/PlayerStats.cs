@@ -71,7 +71,7 @@ public class PlayerStats : MonoBehaviour {
             {
                 MoneyText.text = "Gold: " + Gold.ToString();
             }
-            catch (NullReferenceException e)
+            catch (NullReferenceException)
             { }
         }
     }
