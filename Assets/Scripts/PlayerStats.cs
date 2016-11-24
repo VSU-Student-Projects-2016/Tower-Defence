@@ -30,6 +30,7 @@ public class PlayerStats : MonoBehaviour {
     /// Текст, отображающийся при проигрыше. ДУмаю, стоит сделать отдельную сцену для этого, но пока так.
     /// </summary>
     public Text GameOverText;
+    public GameObject panel;
     #endregion;
 
 
@@ -38,6 +39,7 @@ public class PlayerStats : MonoBehaviour {
     /// </summary>
     void GameOver()
     {
+        panel.SetActive(true);
         GameOverText.enabled = true;
         Time.timeScale = 0; //Останавливает время
     }

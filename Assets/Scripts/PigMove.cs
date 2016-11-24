@@ -21,6 +21,11 @@ public class PigMove : MonoBehaviour {
     public float HP = 500f;
 
     /// <summary>
+    /// Награда за убийство
+    /// </summary>
+    public int Bounty;
+
+    /// <summary>
     /// индекс цели, к которой моб направляется в данный момент
     /// </summary>
     private int _currTarget = 0;
@@ -76,6 +81,7 @@ public class PigMove : MonoBehaviour {
     {
         GetComponent<Animator>().SetBool("move-die", true);
         _isDead = true;
+        FindObjectOfType<PlayerStats>().Gold += Bounty; //Добавить игроку голды
         Destroy(gameObject, 5.0f);
     }
 
@@ -87,7 +93,7 @@ public class PigMove : MonoBehaviour {
         else
             //Если же поворачивает, совершаем поворот
             if (_rotating)
-                if (Quaternion.Angle(transform.rotation, Targets[_currTarget].transform.rotation) > 0.5f) //до тех пор, пока моб не достигнет нужного угла
+                if (_currTarget < Targets.Length && Quaternion.Angle(transform.rotation, Targets[_currTarget].transform.rotation) > 0.5f) //до тех пор, пока моб не достигнет нужного угла
                     Rotate();
                 else
                     _rotating = false; 
@@ -102,7 +108,6 @@ public class PigMove : MonoBehaviour {
 
         //--HP;
         //Debug.Log(HP);
-
 
         //Как только хп кончились, пора подыхать
         if (!_isDead && HP<=0)
