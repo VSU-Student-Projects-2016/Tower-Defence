@@ -38,7 +38,7 @@ public class TowerCreator : MonoBehaviour {
             {
                 /*if (hit.collider.name != "Terrain")  //Если
                     return;*/
-                if (hit.collider.name.Contains("Terrain") && Player.Gold>=TowerCost && TowerPath!="") //Если кликнули на терейн (ТУТ КАКУЮ-НИТЬ ПРОВЕРКУ НАДО)
+                if (hit.collider.name.Contains("PlaceForTower") && Player.Gold>=TowerCost && TowerPath!="") //Если кликнули на терейн (ТУТ КАКУЮ-НИТЬ ПРОВЕРКУ НАДО)
                 {
                     Vector3 pointPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
@@ -49,6 +49,7 @@ public class TowerCreator : MonoBehaviour {
                        q = Quaternion.identity;
 
                     GameObject tower = Instantiate(Resources.Load(TowerPath), pointPosition, q) as GameObject; //Загружаем нужную башню и ставим ее
+                 //  if(tower.GetComponent<BoxCollider>().)
                     Player.Gold -= TowerCost;
                 }
             }
