@@ -84,13 +84,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BulletBehavior.cs" />
-    <Compile Include="Assets\Scripts\BulletSpawn.cs" />
-    <Compile Include="Assets\Scripts\EnemySpawnScript.cs" />
-    <Compile Include="Assets\Scripts\FinishScript.cs" />
-    <Compile Include="Assets\Scripts\PigMove.cs" />
-    <Compile Include="Assets\Scripts\PlayerStats.cs" />
-    <Compile Include="Assets\Scripts\TriggerHelper.cs" />
+    <Compile Include="Assets\Scripts\Game\EnemySpawnScript.cs" />
+    <Compile Include="Assets\Scripts\Game\FinishScript.cs" />
+    <Compile Include="Assets\Scripts\Game\PlayerStats.cs" />
+    <Compile Include="Assets\Scripts\Game\TowerCreator.cs" />
+    <Compile Include="Assets\Scripts\Game\TowerSwitcher.cs" />
+    <Compile Include="Assets\Scripts\Game\TriggerHelper.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\Exit.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\LevelStart.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\PauseGame.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\ReturnToMainMenu.cs" />
+    <Compile Include="Assets\Scripts\Mobs\PigMove.cs" />
+    <Compile Include="Assets\Scripts\bullets\BulletBehavior.cs" />
+    <Compile Include="Assets\Scripts\bullets\BulletSpawn.cs" />
     <Compile Include="Assets\Scripts\tower\TowerLifeLoop.cs" />
   </ItemGroup>
   <ItemGroup>
