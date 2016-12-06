@@ -10,18 +10,18 @@ public class BulletBehavior : MonoBehaviour {
     /// <summary>
     /// Моб, в которого стреляем
     /// </summary>
-    bool trigger; //НЕ ИСПОЛЬЗУЕТСЯ, МБ УДАЛИТЬ
+
 
     public int Damage=100;
 
-    PigMove _target;
+    GameObject _target;
     Rigidbody _rigidBody;
     // Use this for initialization
     void Start () {
 
 
-        trigger = FindObjectOfType<TowerLifeLoop>().trigger;
-        _target = FindObjectOfType<TowerLifeLoop>()._target;
+ 
+        _target = FindObjectOfType<TowerAI>().curTarget;
         if (_target != null)                    //ДОБАВИЛ ТУТ ПРОВЕРКУ, ЧТОБ ЭКСЕПШЕНАМИ НЕ ПЛЕВАЛАСЬ
             Destroy(gameObject, 3.0f);
         else

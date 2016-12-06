@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\EnemySpawnScript.cs" />
     <Compile Include="Assets\Scripts\Game\FinishScript.cs" />
+    <Compile Include="Assets\Scripts\Game\Mobs.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Game\TowerCreator.cs" />
     <Compile Include="Assets\Scripts\Game\TowerSwitcher.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Assets\Scripts\Mobs\PigMove.cs" />
     <Compile Include="Assets\Scripts\bullets\BulletBehavior.cs" />
     <Compile Include="Assets\Scripts\bullets\BulletSpawn.cs" />
+    <Compile Include="Assets\Scripts\tower\TowerAI.cs" />
     <Compile Include="Assets\Scripts\tower\TowerLifeLoop.cs" />
   </ItemGroup>
   <ItemGroup>

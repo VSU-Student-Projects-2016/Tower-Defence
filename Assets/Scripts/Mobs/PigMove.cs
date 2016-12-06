@@ -38,9 +38,10 @@ public class PigMove : MonoBehaviour {
     /// </summary>
     private bool _isDead = false;
 	// Use this for initialization
+
 	void Start () {
         Targets = GameObject.FindObjectOfType<TriggerHelper>().Triggers;
-	}
+    }
 
     public bool IsDead
     {

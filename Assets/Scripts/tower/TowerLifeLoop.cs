@@ -13,10 +13,7 @@ public class TowerLifeLoop : MonoBehaviour {
 
 
 
-    /// <summary>
-    /// body - часть турели
-    /// </summary>
-    private Transform body;
+  
     /// <summary>
     /// Зона поражения Боевой Турели
     /// </summary>
@@ -25,27 +22,16 @@ public class TowerLifeLoop : MonoBehaviour {
     /// Цель
     /// </summary>
     public PigMove _target;
-
     public bool trigger;
 
 
 
     // Use this for initialization
     void Start () {
-        //Получили дочерний элемент Боевой Турели
-        body = transform.Find("Body");
 
-        InvokeRepeating("createBullet", 1.0f, Time.deltaTime * SpeedLevel);
+        
     }
 
-    /// <summary>
-    /// Поворт пушки на указанный угол
-    /// </summary>
-    /// <param name="angle">угол</param>
-    void towerRotation()
-    {
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _target.transform.rotation, Time.deltaTime * RotationSpeed);
-    }
 
     /// <summary>
     /// Ф-ция проверки на то, попадает ли моб в зону поражения Боевой Турели
@@ -61,11 +47,9 @@ public class TowerLifeLoop : MonoBehaviour {
         float zCenter = transform.position.z;
 
         //точка принадлежит окружности
-        if (((x - xCenter) * (x - xCenter) + (z - zCenter)) < Radius * Radius)
+        if (((x - xCenter) * (x - xCenter) + (z - zCenter)) <= Radius * Radius)
             return true;
-        //точка лежит на окружности
-        if (((x - xCenter) * (x - xCenter) + (z - zCenter)) == Radius * Radius) ///ЗАЧЕМ ДВА СЛУЧАЯ ОБРАБАТЫВАЮТСЯ ПО ОДИНОЧКЕ, ЕСЛИ МОЖНО БЫЛО СДЕЛАТЬ МЕНЬШЕ ИЛИ РАВНО, ГЛЯНЬ ТУТ
-            return true;
+
 
         return false;
     }
@@ -75,9 +59,9 @@ public class TowerLifeLoop : MonoBehaviour {
     /// </summary>
     void createBullet()
     {
-          var bullet = Instantiate(Resources.Load("FireBall") as GameObject);
-          if (bullet!=null)
-            bullet.transform.position = body.Find("Gun").Find("barrel").transform.position; //ВОТ ТУТ НЕ ПОТЯНЕТ С НОВОЙ БАШНЕЙ
+         var bullet = Instantiate(Resources.Load("FireBall") as GameObject);
+       // if (bullet != null)
+          //  bullet.transform.position = transform.FindChild("BulletSpawn").position;
           //bullet.GetComponent<BulletBehavior>().Speed = 50;
     }
 	
@@ -87,11 +71,13 @@ public class TowerLifeLoop : MonoBehaviour {
         _target = FindObjectOfType<PigMove>();
         if (_target != null && !_target.IsDead)
         {
-            towerRotation();
-            trigger = mobDetected(_target.transform.position.x, _target.transform.position.z, _target);
+            if(mobDetected(_target.transform.position.x, _target.transform.position.z, _target))
+            {
+                var bullet = Instantiate(Resources.Load("FireBall") as GameObject);
+                bullet.transform.position = transform.FindChild("BulletSpawn").position;
+            }
         }
-        else
-            trigger = false;
+     
 
     }
 }
