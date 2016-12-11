@@ -84,6 +84,7 @@ public class PigMove : MonoBehaviour {
         _isDead = true;
         FindObjectOfType<PlayerStats>().Gold += Bounty; //Добавить игроку голды
         Destroy(gameObject, 5.0f);
+        FindObjectOfType<EnemySpawnScript>().MobCount--; //Уменьшить текущее количество мобов
     }
 
     // Update is called once per frame
