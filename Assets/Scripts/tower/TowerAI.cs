@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TowerAI : MonoBehaviour {
+public class TowerAI : MonoBehaviour
+{
 
     public GameObject[] targets; //массив всех целей
     public GameObject curTarget;
@@ -20,12 +21,14 @@ public class TowerAI : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         turretHead = transform.FindChild("Head");
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         curTarget = SortTargets();
         if (curTarget != null && !curTarget.GetComponent<PigMove>().IsDead) //если переменная текущей цели не пустая
         {
@@ -42,17 +45,16 @@ public class TowerAI : MonoBehaviour {
                     //создаем огненный шар(т.к. башня стихии огня).
                     var bullet = Instantiate(Resources.Load("FireBall") as GameObject);
                     bullet.transform.position = turretHead.transform.position;
+                    //цель
+                    bullet.GetComponent<BulletBehavior>().Target = curTarget;
                     //bullet.GetComponent<BulletBehavior>().Speed = 50;
-                    Debug.Log("Выстрел!");
-
-                    Debug.Log("Переменная distance = " + distance.ToString());
                     reloadTimer = reloadCooldown; //возвращаем переменной задержки её первоначальное значение из константы
-                    
+
                 }
             }
-            
+
         }
-  
+
     }
 
     /// <summary>
@@ -64,8 +66,8 @@ public class TowerAI : MonoBehaviour {
         float closestMobDistance = 0; //инициализация переменной для проверки дистанции до моба
         GameObject nearestmob = null; //инициализация переменной ближайшего моба
         GameObject[] sortingMobs = GameObject.FindGameObjectsWithTag("Monster"); //находим всех мобов с тегом Monster и создаём массив для сортировки
-        
-    
+
+
         foreach (var everyTarget in sortingMobs) //для каждого моба в массиве
         {
             //если дистанция до моба меньше, чем closestMobDistance или равна нулю
