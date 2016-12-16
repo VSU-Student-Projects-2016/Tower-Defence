@@ -76,6 +76,11 @@ public class EnemySpawnScript : MonoBehaviour {
 
     public SpawnStats Stats;
     /// <summary>
+    /// Надпись о завершении уровня
+    /// </summary>
+    public GameObject CompletePanel;
+
+    /// <summary>
     /// Спавним следующего моба
     /// </summary>
     void SpawnNext()
@@ -88,20 +93,32 @@ public class EnemySpawnScript : MonoBehaviour {
         Stats.MobCount++;
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         MobCount = 0;
-        Stats.WaveText.text = "Волна 0/"+WavesCount.Length.ToString();
+        Stats.WaveText.text = "Wave 0/" + WavesCount.Length.ToString();
         Stats.MaxWave = WavesCount.Length;
         Stats.MobText.text = "";
         _timeBetweenMobSpawns = TimeBetweenMobSpawns;
         TimeBetweenMobSpawns = 0;
+        CurrentWaveIndex = -1; //до начала 1-й волны
         SpawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
- //       InvokeRepeating("SpawnNext", 3, SpawnRate);
-	}
-	
+    }
+
 	// Update is called once per frame
 	void Update ()
+    {
+        if (CurrentWaveIndex < WavesCount.Length)
+            WaveSpawnLoop();
+        else //if (MobCount <= 0)
+            Invoke("LevelCompleted", 2);            
+	}
+
+    /// <summary>
+    /// Действия, когда волны не закончились
+    /// </summary>
+    void WaveSpawnLoop ()
     {
         if (TimeBetweenWaves <= 0) //Если идет волна
         {
@@ -111,17 +128,14 @@ public class EnemySpawnScript : MonoBehaviour {
                 {
                     TimeBetweenWaves = WaveCooldown; //то сбрасываем время волны
                     TimeBetweenMobSpawns = 0; //чтобы моб спавнился сразу после начала волны
-                    //WaveCooldown -= 10.0f; //Тут можно как-нибудь поменять время до следующей волны
-                    CurrentWaveIndex++;
-                    Stats.WaveNum++;
-                    Stats.MaxMobCount = (CurrentWaveIndex < WavesCount.Length ? WavesCount[CurrentWaveIndex] : 0);
+                                              //WaveCooldown -= 10.0f; //Тут можно как-нибудь поменять время до следующей волны
+
                 }
                 else //иначе спавним
                 {
                     SpawnNext();
                     WavesCount[CurrentWaveIndex]--;
                     TimeBetweenMobSpawns = _timeBetweenMobSpawns;//сбрасываем таймер спавна следующего моба
-                    MobCount++;
                 }
             }
             else
@@ -129,12 +143,22 @@ public class EnemySpawnScript : MonoBehaviour {
             return;
         }
 
-
-
         if (TimeBetweenWaves > 0) //если же волна не идёт
         {
             TimeBetweenWaves -= Time.deltaTime;
+            if (TimeBetweenWaves < 0)
+            {
+                CurrentWaveIndex++;
+                Stats.MaxMobCount = (CurrentWaveIndex < WavesCount.Length ? WavesCount[CurrentWaveIndex] : 0);
+                Stats.WaveNum = CurrentWaveIndex + 1;
+            }
         }
-        
-	}
+    }
+
+    void LevelCompleted ()
+    {
+        Time.timeScale = 0;
+        CompletePanel.SetActive(true);
+    }
+
 }

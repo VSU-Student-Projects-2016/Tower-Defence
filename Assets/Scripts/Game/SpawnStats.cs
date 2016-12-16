@@ -22,6 +22,11 @@ public class SpawnStats : MonoBehaviour {
     /// </summary>
     int _mobCount;
 
+    /// <summary>
+    /// Надпись о завершении уровня
+    /// </summary>
+    GameObject CompletePanel;
+
     public int WaveNum
     {
         get
@@ -32,10 +37,6 @@ public class SpawnStats : MonoBehaviour {
         {
             _waveNum = value;
             MobCount = 0;
-            Debug.Log(_waveNum);
-            Debug.Log("");
-            Debug.Log(MaxWave);
-
             WaveText.text = "Wave " + _waveNum.ToString() + "/"+MaxWave.ToString();
         }
     }
@@ -49,7 +50,7 @@ public class SpawnStats : MonoBehaviour {
                 MobText.text = "Mobs: 0";
 
             _mobCount = value;
-            MobText.text = "Mobs: " + (_maxMobCount - _mobCount).ToString() + "/" + _maxMobCount.ToString();
+            MobText.text = "Mobs: " + (_mobCount).ToString() + "/" + _maxMobCount.ToString();
         }
     }
 
@@ -59,7 +60,7 @@ public class SpawnStats : MonoBehaviour {
         set
         {
             _maxMobCount = value;
-            MobText.text = "Mobs: " + (_maxMobCount - _mobCount).ToString() + "/" + _maxMobCount.ToString();
+            MobText.text = "Mobs: " + (_mobCount).ToString() + "/" + _maxMobCount.ToString();
         }
     }
     public int  MaxWave;
@@ -67,7 +68,7 @@ public class SpawnStats : MonoBehaviour {
     public EnemySpawnScript Spawn;
 	// Use this for initialization
 	void Start () {
-        MaxWave = Spawn.WavesCount.Length;
+
 	}
 	
 	// Update is called once per frame
