@@ -74,6 +74,7 @@ public class EnemySpawnScript : MonoBehaviour {
 
     #endregion
 
+    public SpawnStats Stats;
     /// <summary>
     /// Спавним следующего моба
     /// </summary>
@@ -84,11 +85,15 @@ public class EnemySpawnScript : MonoBehaviour {
         GameObject enemy = Instantiate(Enemies[_index], pos, Quaternion.identity) as GameObject; 
         enemy.transform.rotation = transform.rotation; //чтобы моб смотрел туда, куда смотрит спавн
         ++MobCount;
+        Stats.MobCount++;
     }
 
 	// Use this for initialization
 	void Start () {
         MobCount = 0;
+        Stats.WaveText.text = "Волна 0/"+WavesCount.Length.ToString();
+        Stats.MaxWave = WavesCount.Length;
+        Stats.MobText.text = "";
         _timeBetweenMobSpawns = TimeBetweenMobSpawns;
         TimeBetweenMobSpawns = 0;
         SpawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
@@ -108,6 +113,8 @@ public class EnemySpawnScript : MonoBehaviour {
                     TimeBetweenMobSpawns = 0; //чтобы моб спавнился сразу после начала волны
                     //WaveCooldown -= 10.0f; //Тут можно как-нибудь поменять время до следующей волны
                     CurrentWaveIndex++;
+                    Stats.WaveNum++;
+                    Stats.MaxMobCount = (CurrentWaveIndex < WavesCount.Length ? WavesCount[CurrentWaveIndex] : 0);
                 }
                 else //иначе спавним
                 {

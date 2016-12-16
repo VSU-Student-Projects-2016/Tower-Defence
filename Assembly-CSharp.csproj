@@ -60,7 +60,6 @@
      <Compile Include="Assets\Scripts\Mobs\MobAI.cs" />
      <Compile Include="Assets\Scripts\Mobs\PigMove.cs" />
      <Compile Include="Assets\Scripts\bullets\BulletBehavior.cs" />
-     <Compile Include="Assets\Scripts\bullets\BulletSpawn.cs" />
      <Compile Include="Assets\Scripts\tower\TowerAI.cs" />
      <Compile Include="Assets\Scripts\tower\TowerLifeLoop.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

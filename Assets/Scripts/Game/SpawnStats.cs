@@ -30,10 +30,13 @@ public class SpawnStats : MonoBehaviour {
         }
         set
         {
-            WaveNum = value;
-            _maxMobCount = Spawn.WavesCount[value];
+            _waveNum = value;
             MobCount = 0;
-            WaveText.text = "Wave " + value.ToString() + "/"+_maxWave.ToString();
+            Debug.Log(_waveNum);
+            Debug.Log("");
+            Debug.Log(MaxWave);
+
+            WaveText.text = "Wave " + _waveNum.ToString() + "/"+MaxWave.ToString();
         }
     }
 
@@ -42,16 +45,29 @@ public class SpawnStats : MonoBehaviour {
         get { return _mobCount; }
         set
         {
+            if (MaxMobCount == 0)
+                MobText.text = "Mobs: 0";
+
             _mobCount = value;
             MobText.text = "Mobs: " + (_maxMobCount - _mobCount).ToString() + "/" + _maxMobCount.ToString();
         }
     }
-    int _maxWave;
+
+    public int MaxMobCount
+    {
+        get { return _maxMobCount; }
+        set
+        {
+            _maxMobCount = value;
+            MobText.text = "Mobs: " + (_maxMobCount - _mobCount).ToString() + "/" + _maxMobCount.ToString();
+        }
+    }
+    public int  MaxWave;
     int _maxMobCount = 0;
     public EnemySpawnScript Spawn;
 	// Use this for initialization
 	void Start () {
-        _maxWave = Spawn.WavesCount.Length;
+        MaxWave = Spawn.WavesCount.Length;
 	}
 	
 	// Update is called once per frame
