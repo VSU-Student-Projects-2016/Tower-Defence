@@ -22,11 +22,7 @@ public class SpawnStats : MonoBehaviour {
     /// </summary>
     int _mobCount;
 
-    /// <summary>
-    /// Надпись о завершении уровня
-    /// </summary>
-    GameObject CompletePanel;
-
+   
     public int WaveNum
     {
         get

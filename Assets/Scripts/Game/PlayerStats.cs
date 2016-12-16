@@ -41,6 +41,8 @@ public class PlayerStats : MonoBehaviour {
     {
         panel.SetActive(true);
         GameOverText.enabled = true;
+        DisableUI dui = FindObjectOfType<DisableUI>();
+        dui.DisableAll(); //вырубаем менюшку
         Time.timeScale = 0; //Останавливает время
     }
     /// <summary>

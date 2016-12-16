@@ -146,7 +146,7 @@ public class EnemySpawnScript : MonoBehaviour {
         if (TimeBetweenWaves > 0) //если же волна не идёт
         {
             TimeBetweenWaves -= Time.deltaTime;
-            if (TimeBetweenWaves < 0)
+            if (TimeBetweenWaves < 0 && CurrentWaveIndex < WavesCount.Length)
             {
                 CurrentWaveIndex++;
                 Stats.MaxMobCount = (CurrentWaveIndex < WavesCount.Length ? WavesCount[CurrentWaveIndex] : 0);
@@ -158,6 +158,8 @@ public class EnemySpawnScript : MonoBehaviour {
     void LevelCompleted ()
     {
         Time.timeScale = 0;
+        DisableUI dui = FindObjectOfType<DisableUI>();
+        dui.DisableAll(); //вырубаем менюшку
         CompletePanel.SetActive(true);
     }
 
