@@ -10,6 +10,11 @@ public class EnemySpawnScript : MonoBehaviour {
     public GameObject[] Enemies;
 
     /// <summary>
+    /// Возможные пути
+    /// </summary>
+    public List<TriggerHelper> Ways;
+
+    /// <summary>
     /// По сколько мобов в волне
     /// </summary>
     public int[] WavesCount;
@@ -32,7 +37,7 @@ public class EnemySpawnScript : MonoBehaviour {
     /// <summary>
     /// Радиус, в котором спавнятся мобы
     /// </summary>
-    const float _radius = 7.0f;
+    const float _radius = 5.0f;
 
     #region Волны
     /// <summary>
@@ -80,6 +85,7 @@ public class EnemySpawnScript : MonoBehaviour {
     /// </summary>
     public GameObject CompletePanel;
 
+    static System.Random rnd = new System.Random();
     /// <summary>
     /// Спавним следующего моба
     /// </summary>
@@ -87,7 +93,8 @@ public class EnemySpawnScript : MonoBehaviour {
     {
         Vector3 pos = new Vector3(transform.position.x + Random.Range(-_radius, _radius), transform.position.y, transform.position.z);
         _index = Random.Range(0, Enemies.Length); //TODO: Переделать, когда появятся еще мобы
-        GameObject enemy = Instantiate(Enemies[_index], pos, Quaternion.identity) as GameObject; 
+        GameObject enemy = Instantiate(Enemies[_index], pos, Quaternion.identity) as GameObject;
+        enemy.GetComponent<PigMove>().Targets = Ways[rnd.Next(0, Ways.Count)].Triggers;
         enemy.transform.rotation = transform.rotation; //чтобы моб смотрел туда, куда смотрит спавн
         ++MobCount;
         Stats.MobCount++;
