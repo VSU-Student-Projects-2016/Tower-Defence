@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Game\TowerCreator.cs" />
     <Compile Include="Assets\Scripts\Game\TowerSwitcher.cs" />
     <Compile Include="Assets\Scripts\Game\TriggerHelper.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\DisableUI.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\Exit.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\LevelStart.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\PauseGame.cs" />
