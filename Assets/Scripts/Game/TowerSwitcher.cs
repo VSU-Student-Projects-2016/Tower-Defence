@@ -6,15 +6,19 @@ public class TowerSwitcher : MonoBehaviour {
     //Стоимости башен, какие-то дефолтные значения
     public int Ak630Cost = 0;
     public int MagicTowerCost = 0;
+    public int MagicTowerCost2 = 0;
+    public int MagicTowerCost3 = 0;
 
     //Пути к соответствующим башням. ПЕРЕДЕЛАТЬ ПРИ ПЕРЕМЕЩЕНИИ БАШЕН
-    string _ak630Path = "Towers/AK630";
     string _magicTowerPath = "Towers/MagicTower";
+    string _magicTowerPath2 = "Towers/MagicTower2";
+    string _magicTowerPath3 = "Towers/MagicTower3";
 
+    TowerCreator tc;
     // Use this for initialization
     void Start () {
-	
-	}
+        tc = GameObject.FindObjectOfType<TowerCreator>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,22 +26,28 @@ public class TowerSwitcher : MonoBehaviour {
 	}
 
     /// <summary>
-    /// Переключение ставимой башни на AK630
+    /// Переключение ставимой башни на MagicTower
     /// </summary>
-    public void SwitchToAK630()
+    public void SwitchTomagicTower()
     {
-        TowerCreator tc = GameObject.FindObjectOfType<TowerCreator>();
-        tc.TowerCost = Ak630Cost;
-        tc.TowerPath = _ak630Path;
+        tc.TowerCost = MagicTowerCost;
+        tc.TowerPath = _magicTowerPath;
     }
 
     /// <summary>
     /// Переключение ставимой башни на MagicTower
     /// </summary>
-    public void SwitchTomagicTower()
+    public void SwitchTomagicTower2()
     {
-        TowerCreator tc = GameObject.FindObjectOfType<TowerCreator>();
-        tc.TowerCost = MagicTowerCost;
-        tc.TowerPath = _magicTowerPath;
+        tc.TowerCost = MagicTowerCost2;
+        tc.TowerPath = _magicTowerPath2;
+    }
+    /// <summary>
+    /// Переключение ставимой башни на MagicTower
+    /// </summary>
+    public void SwitchTomagicTower3()
+    {
+        tc.TowerCost = MagicTowerCost3;
+        tc.TowerPath = _magicTowerPath3;
     }
 }
