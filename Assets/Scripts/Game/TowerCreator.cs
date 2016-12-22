@@ -43,9 +43,9 @@ public class TowerCreator : MonoBehaviour {
                     Vector3 pointPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
                    Quaternion q;
-                    if (TowerPath == "Towers/MagicTower")     ///это все костыль, из-за того, что магическая башня какого-то лешего ложится боком. 
-                       q = new Quaternion(-90, 0, 0, 90);     ///вот тут добавляется комплексный угол поворота и оно начинает работать, как надо
-                    else 
+             /*       if (TowerPath == "Towers/MagicTower")     ///это все костыль, из-за того, что магическая башня какого-то лешего ложится боком. 
+                       q = new Quaternion(0, 0, 0, 0);     ///вот тут добавляется комплексный угол поворота и оно начинает работать, как надо
+                    else */
                      q = Quaternion.identity; 
 
                     GameObject tower = Instantiate(Resources.Load(TowerPath), pointPosition, q) as GameObject; //Загружаем нужную башню и ставим ее
