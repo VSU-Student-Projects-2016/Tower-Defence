@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
 using System.Collections;
 
 public class PigMove : MonoBehaviour {
+
 
     /// <summary>
     /// Путь движения моба
@@ -40,7 +43,7 @@ public class PigMove : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
-       // Targets = GameObject.FindObjectOfType<TriggerHelper>().Triggers;
+        // Targets = GameObject.FindObjectOfType<TriggerHelper>().Triggers;
     }
 
     public bool IsDead

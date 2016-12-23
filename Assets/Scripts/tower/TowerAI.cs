@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,14 +9,17 @@ public class TowerAI : MonoBehaviour
     public GameObject[] targets; //массив всех целей
     public GameObject curTarget;
     public float towerPrice = 100.0f;
-    public float attackMaximumDistance = 50.0f; //дистанция атаки
-    public float attackMinimumDistance = 5.0f;
-    public float attackDamage = 10.0f; //урон
-    public float reloadTimer = 0.5f; //задержка между выстрелами, изменяемое значение
-    public float reloadCooldown = 2.5f; //задержка между выстрелами, константа
-    public float rotationSpeed = 1.5f; //множитель скорости вращения башни
-    public int FiringOrder = 1; //очередность стрельбы для стволов (у нас же их 2)
-    public Transform turretHead;
+    public float attackMaximumDistance; //дистанция атаки
+    public float attackMinimumDistance;
+    public int attackDamage; //урон
+    public float bulletSpeed; //скорость снаряда
+    public float reloadTimer; //задержка между выстрелами, изменяемое значение
+    public float reloadCooldown; //задержка между выстрелами, константа
+    public string DebuffTitle;//название дебафа
+    public float Debufftime;//продолжительность негативного эффекта
+    float rotationSpeed = 1.5f; //множитель скорости вращения башни
+    public string bulletType;
+    Transform turretHead;
 
     public RaycastHit Hit;
 
@@ -43,11 +47,17 @@ public class TowerAI : MonoBehaviour
                     //получаем цель
                     PigMove target = curTarget.GetComponent<PigMove>();
                     //создаем огненный шар(т.к. башня стихии огня).
-                    var bullet = Instantiate(Resources.Load("FireBall") as GameObject);
+                    var bullet = Instantiate(Resources.Load(bulletType) as GameObject);
                     bullet.transform.position = turretHead.transform.position;
                     //цель
-                    bullet.GetComponent<BulletBehavior>().Target = curTarget;
-                    //bullet.GetComponent<BulletBehavior>().Speed = 50;
+                    var bulletComponent = bullet.GetComponent<BulletBehavior>();
+                    bulletComponent.Target = curTarget;
+                    bulletComponent.Speed = bulletSpeed;
+                    bulletComponent.Damage = attackDamage;
+                    bulletComponent.DebuffTitle = DebuffTitle;
+                    bulletComponent.Debufftime = Debufftime;
+
+
                     reloadTimer = reloadCooldown; //возвращаем переменной задержки её первоначальное значение из константы
 
                 }

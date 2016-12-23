@@ -100,6 +100,10 @@
     <Compile Include="Assets\Scripts\Mobs\MobAI.cs" />
     <Compile Include="Assets\Scripts\Mobs\PigMove.cs" />
     <Compile Include="Assets\Scripts\bullets\BulletBehavior.cs" />
+    <Compile Include="Assets\Scripts\bullets\Debuffs\Burn.cs" />
+    <Compile Include="Assets\Scripts\bullets\Debuffs\Freeze.cs" />
+    <Compile Include="Assets\Scripts\bullets\Debuffs\IDebuff.cs" />
+    <Compile Include="Assets\Scripts\bullets\Debuffs\ShadowStroke.cs" />
     <Compile Include="Assets\Scripts\tower\TowerAI.cs" />
     <Compile Include="Assets\Scripts\tower\TowerLifeLoop.cs" />
   </ItemGroup>

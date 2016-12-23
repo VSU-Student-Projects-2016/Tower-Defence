@@ -4,28 +4,45 @@ using System.Collections;
 
 public class BulletBehavior : MonoBehaviour
 {
+    
     /// <summary>
     /// Скорость полета пули
     /// </summary>
-    public float Speed = 5000;
-    /// <summary>
-    /// Моб, в которого стреляем
-    /// </summary>
-    public string NameTower;
+    float speed;
     /// <summary>
     /// Урон
     /// </summary>
-    public int Damage = 100;
+    int damage;
     /// <summary>
     /// Моб. В момент обнаружения моба башней в зоне поражения, она создает фаербол
     /// и указывает ему цель.
     /// </summary>
+    /// 
+    string debuffTitle;//название дебафа
+    float debufftime;//продолжительность -1 - пока не умрет
     GameObject target;
     Rigidbody _rigidBody;
 
     public GameObject Target
     {
         set { target = value; }
+    }
+    public float Speed
+    {
+        set { speed = value; }
+    }
+
+    public int Damage
+    {
+        set { damage = value; }
+    }
+    public string DebuffTitle
+    {
+        set { debuffTitle = value; }
+    }
+    public float Debufftime
+    {
+        set { debufftime = value; }
     }
 
 
@@ -46,9 +63,22 @@ public class BulletBehavior : MonoBehaviour
         var heading = target.transform.position - this.transform.position; //вектор расстояния между мобом и снарядом
         var distance = heading.magnitude; //само расстояние
         var direction = heading / distance; //единичный вектор направления
-        _rigidBody.AddForce(direction * Speed, ForceMode.VelocityChange);
+        _rigidBody.AddForce(direction * speed, ForceMode.VelocityChange);
 
 
+    }
+
+    /// <summary>
+    /// проверка на негативный эффект у моба
+    /// </summary>
+    /// <param name="_debuffName">Название дебафа</param>
+    /// <param name="_target">носитель</param>
+    /// <returns></returns>
+    bool isDebuff(string _debufName, GameObject _target)
+    {
+        if (_target.GetComponent(_debufName) != null)
+            return true;
+        return false;
     }
 
 
@@ -69,7 +99,48 @@ public class BulletBehavior : MonoBehaviour
 
         if (mob != null) //если не нашли, уничтожаем пулю
         {
-            mob.HP -= Damage;
+
+            
+            if (!mob.IsDead)
+            {
+
+                switch (debuffTitle)
+                {
+                    case "Burn":
+                        {
+                            if(!isDebuff(debuffTitle, target))
+                            {
+                                mob.gameObject.AddComponent<Burn>();
+                                mob.gameObject.GetComponent<Burn>().init(target,debufftime);
+                            }
+                            break;
+                        }
+                    case "Freeze":
+                        {
+                            if (!isDebuff(debuffTitle, target))
+                            {
+                                mob.gameObject.AddComponent<Freeze>();
+                                mob.gameObject.GetComponent<Freeze>().init(target, debufftime);
+                            }
+                            break;
+                        }
+                    case "ShadowStroke":
+                        {
+                            if (!isDebuff(debuffTitle, target))
+                            {
+                                mob.gameObject.AddComponent<ShadowStroke>();
+                                mob.gameObject.GetComponent<ShadowStroke>().init(target, debufftime);
+                            }
+                            else
+                                damage *= 2;
+                            break;
+                        }
+                    default:  break;
+                }
+
+            }
+
+            mob.HP -= damage;
             Debug.Log(mob.HP);
         }
         Destroy(gameObject);
