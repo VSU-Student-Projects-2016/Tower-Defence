@@ -16,6 +16,7 @@ public class ReturnToMainMenu : MonoBehaviour {
 
     public void OnClick()
     {
+        SceneManager.UnloadScene(SceneManager.GetActiveScene());
         SceneManager.LoadScene(0);
     }
 }

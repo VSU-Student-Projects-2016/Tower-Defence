@@ -88,12 +88,14 @@ public class PlayerStats : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Time.timeScale = 1;
         try
         {
             GameOverText.enabled = false; //Почему-то тут иногда надпись в нулл, чет странно. Поэтому обернул в try/catch
         }
         catch (NullReferenceException) { }
         InvokeRepeating("IncreaseGold", 0, Time.deltaTime * IncomeSpeed);
+        Gold = 0;
 	}
 	
 	// Update is called once per frame

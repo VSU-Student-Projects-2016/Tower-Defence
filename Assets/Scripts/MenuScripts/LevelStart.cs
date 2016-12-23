@@ -20,6 +20,7 @@ public class LevelStart : MonoBehaviour {
 
     public void ButtonClick()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(level);
     }
 }
