@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemySpawnScript : MonoBehaviour {
+public class EnemySpawnScript : MonoBehaviour
+{
 
     /// <summary>
     /// Кого спавним
@@ -61,8 +62,8 @@ public class EnemySpawnScript : MonoBehaviour {
     /// <summary>
     /// Время между спавнами моба
     /// </summary>
-    public float TimeBetweenMobSpawns=100.0f;
-    float _timeBetweenMobSpawns; 
+    public float TimeBetweenMobSpawns = 100.0f;
+    float _timeBetweenMobSpawns;
     /// <summary>
     /// для загрузки префаба
     /// </summary>
@@ -75,7 +76,7 @@ public class EnemySpawnScript : MonoBehaviour {
     /// <summary>
     /// Индекс текущей волны
     /// </summary>
-    public int CurrentWaveIndex=0;
+    public int CurrentWaveIndex = 0;
 
     #endregion
 
@@ -94,7 +95,11 @@ public class EnemySpawnScript : MonoBehaviour {
         Vector3 pos = new Vector3(transform.position.x + Random.Range(-_radius, _radius), transform.position.y, transform.position.z);
         _index = Random.Range(0, Enemies.Length); //TODO: Переделать, когда появятся еще мобы
         GameObject enemy = Instantiate(Enemies[_index], pos, Quaternion.identity) as GameObject;
-        enemy.GetComponent<PigMove>().Targets = Ways[rnd.Next(0, Ways.Count)].Triggers;
+        int n = rnd.Next(0, Ways.Count);
+        //  Debug.Log(n);
+//        if (enemy.name.Contains("drago") || enemy.name.Contains("spider"))
+//            enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y - 10, enemy.transform.position.z);
+        enemy.GetComponent<PigMove>().Targets = Ways[n].Triggers;
         enemy.transform.rotation = transform.rotation; //чтобы моб смотрел туда, куда смотрит спавн
         ++MobCount;
         Stats.MobCount++;
@@ -113,19 +118,19 @@ public class EnemySpawnScript : MonoBehaviour {
         SpawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
     }
 
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update()
     {
         if (CurrentWaveIndex < WavesCount.Length)
             WaveSpawnLoop();
-        else //if (MobCount <= 0)
-            Invoke("LevelCompleted", 2);            
-	}
+        else if (MobCount <= 0)
+            Invoke("LevelCompleted", 2);
+    }
 
     /// <summary>
     /// Действия, когда волны не закончились
     /// </summary>
-    void WaveSpawnLoop ()
+    void WaveSpawnLoop()
     {
         if (TimeBetweenWaves <= 0) //Если идет волна
         {
@@ -162,7 +167,7 @@ public class EnemySpawnScript : MonoBehaviour {
         }
     }
 
-    void LevelCompleted ()
+    void LevelCompleted()
     {
         Time.timeScale = 0;
         DisableUI dui = FindObjectOfType<DisableUI>();
