@@ -30,7 +30,7 @@ public class TowerCreator : MonoBehaviour {
 	void Update ()
     {
         if(!OpenWindow)
-            if (Input.GetMouseButtonDown(0) || Input.touchCount != 0) //если произведен клик (либо тач, но тут не факт, что работает)
+            if (Input.GetMouseButtonDown(0) || Input.touchPressureSupported) //если произведен клик (либо тач, но тут не факт, что работает)
             {
                 if (EventSystem.current.IsPointerOverGameObject()) //проверка на то, что мы находимся не над менюхой
                     return;
