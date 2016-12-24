@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour {
     public GameObject panel;
     #endregion;
 
+    public int StartGold = 200;
 
     /// <summary>
     /// Действия при проигрыше
@@ -95,7 +96,7 @@ public class PlayerStats : MonoBehaviour {
         }
         catch (NullReferenceException) { }
         InvokeRepeating("IncreaseGold", 0, Time.deltaTime * IncomeSpeed);
-        Gold = 0;
+        ChangeGold = StartGold;
 	}
 	
 	// Update is called once per frame

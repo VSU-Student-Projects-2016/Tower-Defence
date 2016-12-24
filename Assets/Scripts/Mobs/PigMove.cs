@@ -43,7 +43,8 @@ public class PigMove : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
-        // Targets = GameObject.FindObjectOfType<TriggerHelper>().Triggers;
+        if (this.gameObject.name.Contains("drago") || this.gameObject.name.Contains("spider"))
+            transform.position = new Vector3(transform.position.x, transform.position.y - 2, transform.position.z);
     }
 
     public bool IsDead
@@ -67,7 +68,12 @@ public class PigMove : MonoBehaviour {
     /// </summary>
     void MoveForward()
     {
-        transform.position = Vector3.MoveTowards(transform.position, Targets[_currTarget].transform.position, Time.deltaTime * MovingSpeed);
+        if (this.gameObject.name.Contains("drago") || this.gameObject.name.Contains("spider"))
+            transform.position = Vector3.MoveTowards(transform.position,
+                                                     new Vector3(Targets[_currTarget].transform.position.x, Targets[_currTarget].transform.position.y - 5,
+                                                     Targets[_currTarget].transform.position.z), Time.deltaTime * (MovingSpeed));
+        else
+            transform.position = Vector3.MoveTowards(transform.position, Targets[_currTarget].transform.position, Time.deltaTime * MovingSpeed);
     }
     /// <summary>
     /// Движение моба
@@ -75,7 +81,12 @@ public class PigMove : MonoBehaviour {
     /// <param name="slow">на сколько замедляем</param>
     void MoveForward(float slow)
     {
-        transform.position = Vector3.MoveTowards(transform.position, Targets[_currTarget].transform.position, Time.deltaTime * (MovingSpeed * slow));
+        if (this.gameObject.name.Contains("spider") )
+            transform.position = Vector3.MoveTowards(transform.position,
+                                                     new Vector3(Targets[_currTarget].transform.position.x, Targets[_currTarget].transform.position.y-30, 
+                                                     Targets[_currTarget].transform.position.z), Time.deltaTime * (MovingSpeed * slow));
+        else
+            transform.position = Vector3.MoveTowards(transform.position, Targets[_currTarget].transform.position, Time.deltaTime * (MovingSpeed * slow));
     }
 
     /// <summary>
@@ -104,7 +115,7 @@ public class PigMove : MonoBehaviour {
                     _rotating = false; 
 
         //Когда достигаем триггера
-        if (_currTarget < Targets.Length && Vector3.Distance(transform.position, Targets[_currTarget].transform.position) < 1.0f)
+        if (_currTarget < Targets.Length && Vector3.Distance(transform.position, Targets[_currTarget].transform.position) < 5.0f)
         {
             ++_currTarget; //говорим двигаться к следующему триггеру...
             if (_currTarget < Targets.Length)
