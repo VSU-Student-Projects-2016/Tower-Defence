@@ -23,7 +23,9 @@ public class UpgradeBehaviour : MonoBehaviour {
 
     public void addDebuff()
     {
-        tower.transform.FindChild("MagicTower").GetComponent<TowerAI>().Debuff = true;
+        TowerAI towerAI = tower.transform.FindChild("MagicTower").GetComponent<TowerAI>();
+        towerAI.Debuff = true;
+        towerAI.gameObject.transform.Find("middleRing1").transform.Find("debuffUpdate").gameObject.SetActive(true);
     }
     /// <summary>
     /// Закрываем окно апгрейда

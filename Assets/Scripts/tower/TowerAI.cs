@@ -24,7 +24,7 @@ public class TowerAI : MonoBehaviour
     
     public RaycastHit Hit;
 
-
+    
     // Use this for initialization
     void Start()
     {
