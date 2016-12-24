@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\MenuScripts\LevelStart.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\PauseGame.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\ReturnToMainMenu.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\UpgradeBehaviour.cs" />
     <Compile Include="Assets\Scripts\Mobs\MobAI.cs" />
     <Compile Include="Assets\Scripts\Mobs\PigMove.cs" />
     <Compile Include="Assets\Scripts\bullets\BulletBehavior.cs" />

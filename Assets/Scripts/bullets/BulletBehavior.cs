@@ -20,9 +20,14 @@ public class BulletBehavior : MonoBehaviour
     /// 
     string debuffTitle;//название дебафа
     float debufftime;//продолжительность -1 - пока не умрет
+    bool debuff;
     GameObject target;
     Rigidbody _rigidBody;
 
+    public bool Debuff
+    {
+        set { debuff = value; }
+    }
     public GameObject Target
     {
         set { target = value; }
@@ -97,11 +102,11 @@ public class BulletBehavior : MonoBehaviour
         PigMove mob = collision.gameObject.GetComponent<PigMove>(); //Ищем у того, куда попали, компонент моба
         Debug.Log(mob);
 
-        if (mob != null) //если не нашли, уничтожаем пулю
+        if (mob != null ) //если не нашли, уничтожаем пулю
         {
 
             
-            if (!mob.IsDead)
+            if (!mob.IsDead && debuff)
             {
 
                 switch (debuffTitle)

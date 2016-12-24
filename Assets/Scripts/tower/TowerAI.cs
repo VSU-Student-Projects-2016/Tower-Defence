@@ -15,12 +15,13 @@ public class TowerAI : MonoBehaviour
     public float bulletSpeed; //скорость снаряда
     public float reloadTimer; //задержка между выстрелами, изменяемое значение
     public float reloadCooldown; //задержка между выстрелами, константа
+    public bool Debuff = false;
     public string DebuffTitle;//название дебафа
     public float Debufftime;//продолжительность негативного эффекта
     float rotationSpeed = 1.5f; //множитель скорости вращения башни
     public string bulletType;
     Transform turretHead;
-
+    
     public RaycastHit Hit;
 
 
@@ -56,6 +57,7 @@ public class TowerAI : MonoBehaviour
                     bulletComponent.Damage = attackDamage;
                     bulletComponent.DebuffTitle = DebuffTitle;
                     bulletComponent.Debufftime = Debufftime;
+                    bulletComponent.Debuff = Debuff;
 
 
                     reloadTimer = reloadCooldown; //возвращаем переменной задержки её первоначальное значение из константы
