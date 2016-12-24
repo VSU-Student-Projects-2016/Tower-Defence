@@ -26,6 +26,7 @@ public class PigMove : MonoBehaviour {
     /// <summary>
     /// Награда за убийство
     /// </summary>
+    [Range(50,150)]
     public int Bounty;
 
     /// <summary>

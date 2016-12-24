@@ -42,17 +42,22 @@ public class TowerCreator : MonoBehaviour {
                         return;*/
                     if (hit.collider.name.Contains("PlaceForTower") && Player.Gold>=TowerCost && TowerPath!="") //Если кликнули на 
                     {
-                        Vector3 pointPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+                       
+                        
+                            Vector3 pointPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+                            Quaternion q;
+                            q = Quaternion.identity;
+                            
+                            GameObject tower = Instantiate(Resources.Load(TowerPath), pointPosition, q) as GameObject; //Загружаем нужную башню и ставим ее
+                                                                                                                       //  if(tower.GetComponent<BoxCollider>().)
 
-                       Quaternion q;
-                 /*       if (TowerPath == "Towers/MagicTower")     ///это все костыль, из-за того, что магическая башня какого-то лешего ложится боком. 
-                           q = new Quaternion(0, 0, 0, 0);     ///вот тут добавляется комплексный угол поворота и оно начинает работать, как надо
-                        else */
-                         q = Quaternion.identity; 
+                            int towerPrice = (int)tower.transform.Find("MagicTower").GetComponent<TowerAI>().towerPrice;
 
-                        GameObject tower = Instantiate(Resources.Load(TowerPath), pointPosition, q) as GameObject; //Загружаем нужную башню и ставим ее
-                     //  if(tower.GetComponent<BoxCollider>().)
-                        Player.Gold -= TowerCost;
+                        if (Player.Gold >= towerPrice)
+                            Player.Gold -= (int)tower.transform.Find("MagicTower").GetComponent<TowerAI>().towerPrice;
+                        else
+                            Destroy(tower);
+                        
                     }
                     else if (hit.collider.tag.Contains("Tower")) //Если кликнули на 
                     {
