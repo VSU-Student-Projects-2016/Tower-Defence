@@ -69,7 +69,7 @@ public class PigMove : MonoBehaviour {
     /// </summary>
     void MoveForward()
     {
-        if (this.gameObject.name.Contains("drago") || this.gameObject.name.Contains("spider"))
+        if (this.gameObject.name.Contains("spider"))
             transform.position = Vector3.MoveTowards(transform.position,
                                                      new Vector3(Targets[_currTarget].transform.position.x, Targets[_currTarget].transform.position.y - 5,
                                                      Targets[_currTarget].transform.position.z), Time.deltaTime * (MovingSpeed));
@@ -82,9 +82,9 @@ public class PigMove : MonoBehaviour {
     /// <param name="slow">на сколько замедляем</param>
     void MoveForward(float slow)
     {
-        if (this.gameObject.name.Contains("spider") )
+        if (this.gameObject.name.Contains("spider"))
             transform.position = Vector3.MoveTowards(transform.position,
-                                                     new Vector3(Targets[_currTarget].transform.position.x, Targets[_currTarget].transform.position.y-30, 
+                                                     new Vector3(Targets[_currTarget].transform.position.x, Targets[_currTarget].transform.position.y-5, 
                                                      Targets[_currTarget].transform.position.z), Time.deltaTime * (MovingSpeed * slow));
         else
             transform.position = Vector3.MoveTowards(transform.position, Targets[_currTarget].transform.position, Time.deltaTime * (MovingSpeed * slow));
@@ -116,7 +116,7 @@ public class PigMove : MonoBehaviour {
                     _rotating = false; 
 
         //Когда достигаем триггера
-        if (_currTarget < Targets.Length && Vector3.Distance(transform.position, Targets[_currTarget].transform.position) < 5.0f)
+        if (_currTarget < Targets.Length && Vector3.Distance(transform.position, Targets[_currTarget].transform.position) < 6.0f)
         {
             ++_currTarget; //говорим двигаться к следующему триггеру...
             if (_currTarget < Targets.Length)
