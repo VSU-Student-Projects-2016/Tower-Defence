@@ -1,37 +1,43 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
+using UnityEngine.UI;
 
-public class TowerSwitcher : MonoBehaviour {
+public class TowerSwitcher : MonoBehaviour
+{
 
     //Стоимости башен, какие-то дефолтные значения
-    public int Ak630Cost = 0;
-    public int MagicTowerCost = 0;
-    public int MagicTowerCost2 = 0;
-    public int MagicTowerCost3 = 0;
+    public int FireTowerCost = 0;
+    public int IceTowerCost = 0;
+    public int DarkTowerCost = 0;
 
     //Пути к соответствующим башням. ПЕРЕДЕЛАТЬ ПРИ ПЕРЕМЕЩЕНИИ БАШЕН
-    string _magicTowerPath = "Towers/MagicTower";
-    string _magicTowerPath2 = "Towers/MagicTower2";
-    string _magicTowerPath3 = "Towers/MagicTower3";
+    string _fireTowerPath = "Towers/FireTower";
+    string _iceTowerPath = "Towers/IceTower";
+    string _darkTowerPath = "Towers/DarkTower";
 
     TowerCreator tc;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         tc = GameObject.FindObjectOfType<TowerCreator>();
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     /// <summary>
     /// Переключение ставимой башни на MagicTower
     /// </summary>
     public void SwitchTomagicTower()
     {
-        tc.TowerCost = MagicTowerCost;
-        tc.TowerPath = _magicTowerPath;
+
+        tc.TowerCost = FireTowerCost;
+        tc.TowerPath = _fireTowerPath;
     }
 
     /// <summary>
@@ -39,15 +45,15 @@ public class TowerSwitcher : MonoBehaviour {
     /// </summary>
     public void SwitchTomagicTower2()
     {
-        tc.TowerCost = MagicTowerCost2;
-        tc.TowerPath = _magicTowerPath2;
+        tc.TowerCost = IceTowerCost;
+        tc.TowerPath = _iceTowerPath;
     }
     /// <summary>
     /// Переключение ставимой башни на MagicTower
     /// </summary>
     public void SwitchTomagicTower3()
     {
-        tc.TowerCost = MagicTowerCost3;
-        tc.TowerPath = _magicTowerPath3;
+        tc.TowerCost = DarkTowerCost;
+        tc.TowerPath = _darkTowerPath;
     }
 }
